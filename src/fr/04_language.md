@@ -9,10 +9,10 @@ puis dans le document des *[Rust API Guidelines]*.
 
 La règle de base consiste à utiliser :
 
-- la *`UpperCamelCase`* pour les types, traits et valeurs d'énumérations ;
-- la *`snake_case`* pour les fonctions, méthodes, macros, variables et modules ;
-- la *`SCREAMING_SNAKE_CASE`* pour les variables statiques et les constantes ;
-- la *`lowercase`* pour les durées de vie (*lifetimes*).
+- `UpperCamelCase` pour les types, traits et valeurs d'énumérations ;
+- `snake_case` pour les fonctions, méthodes, macros, variables et modules ;
+- `SCREAMING_SNAKE_CASE` pour les variables statiques et les constantes ;
+- `'lowercase` pour les durées de vie (*lifetimes*).
 
 Les [Rust API Guidelines] recommandent également des conventions de nommage
 plus précises pour certaines constructions particulières :
@@ -51,7 +51,7 @@ langage fournit le mot-clé `unsafe`.
 >
 >  - L'interfaçage entre Rust et d'autres langages (FFI) permet la déclaration
 >  de fonctions dont l'implantation est faite en C, en utilisant le préfixe
->  `extern "C"`. Pour une utiliser une telle fonction, le mot-clé `unsafe` est
+>  `extern "C"`. Pour utiliser une telle fonction, le mot-clé `unsafe` est
 >  requis. Un *wrapper* "sûr" doit être défini pour que le code C soit
 >  finalement appelé de façon souple et sûre.
 >
@@ -68,9 +68,10 @@ langage fournit le mot-clé `unsafe`.
 >  comportements non sûrs en fonction de ses arguments. Par exemple, cela arrive
 >  lorsqu'une fonction doit déréférencer un pointeur passé en argument.
 >
-> À l'exception de l'un ou plusieurs de ces cas `#[forbid(unsafe_code)]` doit
-> apparaître dans le fichier `main.rs` afin de générer des erreurs de
-> compilation dans le cas ou le mot-clé `unsafe` est utilisé dans le projet.
+> À l'exception de l'un ou plusieurs de ces cas `#![forbid(unsafe_code)]` doit
+> apparaître dans à la racine de la *crate* (typiquement `main.rs` ou `lib.rs`)
+> afin de générer des erreurs de compilation dans le cas ou le mot-clé `unsafe`
+> est utilisé dans le projet.
 
 ## Dépassement d'entiers
 

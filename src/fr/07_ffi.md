@@ -185,7 +185,7 @@ types du côté C et ceux du côté Rust.
 > [FFI-SAFEWRAPPING](#FFI-SAFEWRAPPING)). Attention également à certaines
 > options dangereuses de `rust-bindgen`, en particulier `rustified_enum`.
 
-[rust-bindgen]: https://crates.io/crates/rust-bindgen
+[rust-bindgen]: https://crates.io/crates/bindgen
 [cbindgen]: https://crates.io/crates/cbindgen
 
 ### Types dépendants de la plateforme d'exécution
@@ -1017,16 +1017,16 @@ int counter_incr(Counter *counter);
 #include "counter.h"
 
 int main(int argc, const char** argv) {
-    Counter* c = counter_create();
-
     if (argc < 2) {
         return -1;
     }
     size_t n = (size_t)strtoull(argv[1], NULL, 10);
 
+    Counter* c = counter_create();
     for (size_t i=0; i < n; i++) {
         if (counter_incr(c) != 0) {
             printf("overflow\n");
+            counter_destroy(c);
             return -1;
         }
     }
